@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>hello angular</title>
 </head>
-<body ng-app>
+<body ng-app="myModule">
 	<div ng-controller="helloController">
 		<input type="text" ng-model="name" placeholder="please enter your name">
 		<h1>hello, {{name}}</h1>
@@ -19,7 +19,9 @@
 	<script type="text/javascript" src="../js/framework/angular-1.3.0.js"></script>
 	<script>
 		
-		function helloController($scope, $timeout) {
+		var myModule = angular.module('myModule', []);
+
+		myModule.controller('helloController', ['$scope', '$timeout', function helloController($scope, $timeout) {
 			var updateClock = function (){
 				$scope.clock = new Date();
 				$timeout(function(){
@@ -27,7 +29,17 @@
 				}, 500);
 			};
 			updateClock();
-		}
+		}]);
+		
+		// function helloController($scope, $timeout) {
+		// 	var updateClock = function (){
+		// 		$scope.clock = new Date();
+		// 		$timeout(function(){
+		// 			updateClock();
+		// 		}, 500);
+		// 	};
+		// 	updateClock();
+		// }
 	</script>
 </body>
 </html>
